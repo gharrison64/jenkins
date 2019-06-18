@@ -1,16 +1,12 @@
 pipeline{
-agent none
+agent any
 	stages {
 		stage('SCM Stage'){
-			agent {label 'mac-xamarin'}
-			environment{PATH = "/usr/local/bin:${PATH}"}
 			steps{
 				sh 'hostname'
 				pwd()
 				checkout scm
 				echo 'Building...'
-				sh 'npm -dd  install'
-				sh 'npm -dd run build'
 			}
 		}
 		stage('Deploy to Development'){
@@ -23,10 +19,9 @@ agent none
 		stage('Deploy to QA Approval'){
 			when { branch 'qa' } 
 			steps{
-				input('Approve QA Deployment')
+				checkpoint 'Approve QA Deployment'
 			}
 		}
-
 		stage('Deploy to QA'){
 			when { branch 'qa' } 
 			agent{label 'ubuntu12'}
@@ -38,7 +33,7 @@ agent none
 		stage('Deploy to Production Approval'){
 			when { branch 'master' } 
 			steps{
-				input('Approve Production Deployment')
+				checkpoint 'Approve Production Deployment'
 			}
 		}
 		stage('Deploy to production'){
