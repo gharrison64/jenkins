@@ -1,4 +1,3 @@
-pipeline {
 	agent any
 	stages {
 		stage('SCM Stage'){
@@ -29,4 +28,3 @@ pipeline {
 			}
 		}
 	}
-}
