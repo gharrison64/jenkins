@@ -1,6 +1,3 @@
-pipeline{
-	agent none
-	stages {
 	node(''){
 		stage('SCM Stage'){
 				steps{
