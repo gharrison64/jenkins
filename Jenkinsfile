@@ -1,13 +1,17 @@
-	agent any
+pipeline{
+	agent none
 	stages {
 		stage('SCM Stage'){
 			steps{
-				sh 'hostname'
-				pwd()
-				checkout scm
-				echo 'Building...'
+				node(''){
+					sh 'hostname'
+					pwd()
+					checkout scm
+					echo 'Building...'
+                                }
 			}
 		}
+/*
 		stage('Deploy to Development'){
 			when { branch 'dev' } 
 			steps{
@@ -27,4 +31,6 @@
 				sh 'jenkins/deployToProd.bash'
 			}
 		}
+*/
 	}
+}
