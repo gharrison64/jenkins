@@ -1,30 +1,30 @@
-pipeline{
-agent any
+pipeline {
+	agent any
 	stages {
-		stage('SCM Stage'){
-			steps{
+		stage('SCM Stage') {
+			steps {
 				sh 'hostname'
 				pwd()
 				checkout scm
 				echo 'Building...'
 			}
 		}
-		stage('Deploy to Development'){
+		stage('Deploy to Development') {
 			when { branch 'dev' } 
-			steps{
+			steps {
 				sh 'jenkins/deployToDev.bash'
 			}
 		}
-		stage('Deploy to QA'){
+		stage('Deploy to QA') {
 			when { branch 'qa' } 
 			steps{
 				sh 'jenkins/deployToQA.bash'
 			}
 			
 		}
-		stage('Deploy to production'){
+		stage('Deploy to production') {
 			when { branch 'master' } 
-			steps{
+			steps {
 				sh 'jenkins/deployToProd.bash'
 			}
 			
