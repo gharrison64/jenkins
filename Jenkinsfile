@@ -25,6 +25,7 @@ pipeline {
 		stage('Deploy to production') {
 			when { branch 'master' } 
 			steps {
+			checkpoint 'Promote to Production'
 				sh 'jenkins/deployToProd.bash'
 			}
 			
