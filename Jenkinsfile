@@ -22,9 +22,9 @@ pipeline {
 			}
 			
 		}
-		stage ('Deploy to Production'){
+		stage ('Deploy to Production Checkpoint'){
+			agent none
 			steps{
-				node('')
 				checkpoint 'Promote to Production'
 			}
 		}
