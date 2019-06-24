@@ -22,10 +22,15 @@ pipeline {
 			}
 			
 		}
-		stage('Deploy to production') {
+		stage (Deploy to Production){
+		agent none
+			steps{
+				checkpoint 'Promote to Production'
+			}
+		}
+		stage('Deploying to Production') {
 			when { branch 'master' } 
 			steps {
-			checkpoint 'Promote to Production'
 				sh 'jenkins/deployToProd.bash'
 			}
 			
