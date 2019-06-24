@@ -26,9 +26,9 @@ pipeline {
 			agent none
 			steps{
 				echo 'Promoting...'
+				checkpoint 'Promote to Production'
 				
 			}
-			checkpoint 'Promote to Production'
 		}
 		stage('Deploying to Production') {
 			when { branch 'master' } 
