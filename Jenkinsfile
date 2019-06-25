@@ -15,7 +15,7 @@ pipeline {
 				sh 'jenkins/deployToDev.bash'
 			}
 		}
-		stage ('Deploy to Production Checkpoint'){
+		stage ('Deploy to QA Checkpoint'){
 			when { branch 'qa' } 
 			steps{
 				checkpoint 'Promote to QA'
