@@ -18,7 +18,7 @@ pipeline {
 		stage ('Deploy to Production Checkpoint'){
 			when { branch 'qa' } 
 			steps{
-				checkpoint 'Promote to Production'
+				checkpoint 'Promote to QA'
 				echo 'Promoting...'
 			}
 		}
