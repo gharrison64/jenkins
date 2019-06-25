@@ -15,6 +15,13 @@ pipeline {
 				sh 'jenkins/deployToDev.bash'
 			}
 		}
+		stage ('Deploy to Production Checkpoint'){
+			when { branch 'qa' } 
+			steps{
+				checkpoint 'Promote to Production'
+				echo 'Promoting...'
+			}
+		}
 		stage('Deploy to QA') {
 			when { branch 'qa' } 
 			steps{
@@ -23,6 +30,7 @@ pipeline {
 			
 		}
 		stage ('Deploy to Production Checkpoint'){
+			when { branch 'master' } 
 			steps{
 				checkpoint 'Promote to Production'
 				echo 'Promoting...'
